@@ -1,0 +1,64 @@
+{
+  "boards": [
+    {
+      "name": "For HR",
+      "id": "hr",
+      "heading": "Human Resources"
+    },
+    {
+      "name": "For Sales",
+      "id": "sales",
+      "heading": "Sales"
+    },
+    {
+      "name": "For Support",
+      "id": "support",
+      "heading": "Support"
+    },
+    {
+      "name": "For UX Design",
+      "id": "ux-design",
+      "heading": "UX Design"
+    },
+    {
+      "name": "For Digital Marketing",
+      "id": "digital-marketting",
+      "heading": "Digital Marketing"
+    },
+    {
+      "name": " For Software Development",
+      "id": "software-development",
+      "heading": "Software Development"
+    },
+    {
+      "name": "For Business Consultancy",
+      "id": "business-consultancy",
+      "heading": "Business Consultancy"
+    },
+    {
+      "name": "For Law",
+      "id": "law",
+      "heading": "Law"
+    },
+    {
+      "name": "For Architecture",
+      "id": "architecture",
+      "heading": "Architecture"
+    },
+    {
+      "name": "For Education",
+      "id": "education",
+      "heading": "Education"
+    },
+    {
+      "name": "For Time-driven",
+      "id": "timeDrive",
+      "heading": "Time-driven"
+    },
+    {
+      "name": "For Personal",
+      "id": "personal",
+      "heading": "Personal"
+    }
+  ]
+}

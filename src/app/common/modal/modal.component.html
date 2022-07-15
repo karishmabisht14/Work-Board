@@ -1,0 +1,53 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add {{name}} Task</h4>
+    <button type="button" class="btn-close" (click)="activeModal.dismiss('Cross click')" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="taskForm">
+        <div class="form-group">
+            <div class="row">
+                <label class="center-block">Task Name:
+                    <input class="form-control" formControlName="taskName">
+                </label>
+                <div *ngIf="taskForm.controls['taskName'].invalid && 
+                    (taskForm.controls['taskName'].dirty || taskForm.controls['taskName'].touched)"
+                    class="alert lert-danger">
+                    <span *ngIf="taskForm.controls['taskName'].errors?.['required']">
+                        Task name is required...
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <label class="center-block">Description:
+                    <textarea class="form-control" formControlName="taskDescription" rows="3"></textarea>
+                </label>
+            </div>
+
+            <div class="row">
+                <label class="center-block">Stage:
+                    <div class="btn-group" role="group" aria-label="Radio Buttons with Bootstrap 5">
+                        <input type="radio" formControlName="taskStage" [value]="'backlog'" class="btn-check"
+                            id="backlog" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="backlog">Backlog</label>
+
+                        <input type="radio" formControlName="taskStage" [value]="'to-do'" class="btn-check" id="to-do"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary" for="to-do">To Do</label>
+
+                        <input type="radio" formControlName="taskStage" [value]="'in-progress'" class="btn-check"
+                            id="in-progress" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="in-progress">In Progress</label>
+
+                        <input type="radio" formControlName="taskStage" [value]="'complete'" class="btn-check"
+                            id="complete" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="complete">Complete</label>
+                    </div>
+                </label>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Save</button>
+</div>
