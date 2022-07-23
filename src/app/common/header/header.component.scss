@@ -1,11 +1,29 @@
-.headerWrap {
+.header {
   background-color: #17252a;
-  padding: 0;
-  text-align: center;
+  color: #ffffff;
+  padding: 0px;
 }
 
-.headerWrap span {
+.navbar-nav span {
   font-size: 45px;
-  color: #feffff;
   font-weight: 600;
+}
+
+.user {
+  font-size: 15px;
+  background-color: #17252a;
+  color: #ffffff;
+  border: none;
+}
+
+.icon {
+  font-size: 15px;
+}
+
+.line {
+  height: 22px;
+  width: 1px;
+  background-color: #ffffff;
+  margin-left: 5px;
+  margin-right: 5px;
 }
