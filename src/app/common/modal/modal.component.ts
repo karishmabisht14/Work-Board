@@ -8,7 +8,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
-  @Input() name: string = '';
+  @Input()
+  name: string = '';
   taskForm = this.fb.group({
     taskName: ['', Validators.required],
     taskDescription: [''],
