@@ -9,11 +9,13 @@ import { BoardsComponent } from './main/boards/boards.component';
 import { CardComponent } from './common/card/card.component';
 import { HeaderComponent } from './common/header/header.component';
 import { BoardComponent } from './common/board/board.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ModalComponent } from './common/modal/modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './main/login/login.component';
+import { AuthInterceptor } from 'src/core/interceptors';
+import { SharedModule } from 'src/core/providers/modules/shared.module';
 
 @NgModule({
   declarations: [
@@ -33,8 +35,15 @@ import { LoginComponent } from './main/login/login.component';
     HttpClientModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
