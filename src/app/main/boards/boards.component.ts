@@ -12,7 +12,7 @@ export class BoardsComponent implements OnInit {
   constructor(private router: Router, private appService: AppService) {}
 
   ngOnInit(): void {
-    this.appService.getJsonData().subscribe((data) => {
+    this.appService.getJsonData().subscribe((data:any) => {
       console.log('Data from file....', data);
       if (data && data.boards) {
         this.boards = data.boards;

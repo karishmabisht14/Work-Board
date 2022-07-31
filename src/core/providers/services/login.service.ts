@@ -13,7 +13,6 @@ export class LoginService {
 
   login(payload: any): Observable<any> {
     // console.log("here.........login....", payload);
-    payload.role = 'admin';
     return this._apiService.post(ApiEndPoints.login, payload).pipe(
       map(data => {
         // console.log("here.........login....", data);
@@ -25,37 +24,6 @@ export class LoginService {
         return data;
       })
     );
-  }
-
-  sendPasswordResetMail(payload: { email: string }) {
-    return this._apiService.post(ApiEndPoints.sendResetEmail, payload).pipe(
-      map(data => {
-        return data;
-      })
-    );
-  }
-
-  resetPassword(newPassword: string) {
-    return this._apiService
-      .post(ApiEndPoints.resetPassword, { newPassword })
-      .pipe(
-        map(data => {
-          return data;
-        })
-      );
-  }
-
-  changepassword(oldPassword: string, newPassword: string) {
-    return this._apiService
-      .post(`${ApiEndPoints.signUp}/${ApiEndPoints.changePassword}`, {
-        oldPassword,
-        newPassword,
-      })
-      .pipe(
-        map(data => {
-          return data;
-        })
-      );
   }
 
   logout() {

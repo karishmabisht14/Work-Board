@@ -117,36 +117,4 @@ export class AlertService {
         }
       });
   }
-
-  forgotPassword() {
-    Swal.fire({
-      title: 'Enter your registered email',
-      input: 'text',
-      inputAttributes: {
-        autocapitalize: 'off',
-      },
-      showCancelButton: true,
-      confirmButtonText: 'Reset Password',
-      showLoaderOnConfirm: true,
-      preConfirm: (resetPassword: string) => {
-        let payload = {
-          email: resetPassword,
-        };
-        this._loginService
-          .sendPasswordResetMail(payload)
-          .subscribe((result: any) => {
-            console.log('...done.....reset Password', result);
-          });
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result: any) => {
-      if (result.value) {
-        this.showSuccessAlert(
-          'Password Reset Link Sent',
-          'Check your email for futher instruction.',
-          false
-        );
-      }
-    });
-  }
 }
