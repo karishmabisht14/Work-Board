@@ -5,7 +5,7 @@ import { environment } from "src/environments/environment";
 
 @Injectable()
 export class ApiService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
     return this.http.get(`${environment.api_url}${path}`, { params });
@@ -16,6 +16,7 @@ export class ApiService {
   }
 
   post(path: string, body: Object = {}): Observable<any> {
+    console.log("here...post...api service.", body, path);
     return this.http.post(`${environment.api_url}${path}`, body);
   }
 

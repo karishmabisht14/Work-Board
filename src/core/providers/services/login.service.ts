@@ -9,19 +9,18 @@ export class LoginService {
   constructor(
     private _sharedService: SharedService,
     private _apiService: ApiService
-  ) {}
+  ) { }
 
   login(payload: any): Observable<any> {
-    // console.log("here.........login....", payload);
+    console.log("here.........login....", payload, ApiEndPoints.login);
     return this._apiService.post(ApiEndPoints.login, payload).pipe(
-      map(data => {
-        // console.log("here.........login....", data);
-        if (data && data.user) {
-          this._sharedService.setItem('auth-token', data.id);
-          this._sharedService.setItem('userId', data.user.id);
-          this._sharedService.changeUser(data.user);
+      map(userDetails => {
+        console.log("here.........login....", userDetails);
+        if (userDetails && userDetails._id) {
+          this._sharedService.setItem('auth-token', userDetails.token);
+          this._sharedService.changeUser(userDetails);
         }
-        return data;
+        return userDetails;
       })
     );
   }

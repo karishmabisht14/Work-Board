@@ -9,16 +9,19 @@ export class ErrorHandlerService {
     private _alert: AlertService,
     private router: Router,
     private _sharedService: SharedService
-  ) {}
+  ) { }
 
   handleError(error: any): any {
     let title = '';
     let subTitle = '';
-    console.log('error....is', error);
+    console.log('error....is', typeof (error.error));
     if (error.error instanceof ErrorEvent) {
       // client-side error
       console.log('Client Side-------------------');
       title = `Error: ${error.error.message}`;
+    } else if (typeof (error.error) === 'string') {
+      title = `Oops...!`;
+      subTitle = error.error;
     } else {
       // server-side error
       let err = this.getErrorMsgAndCode(error);
@@ -39,9 +42,9 @@ export class ErrorHandlerService {
         title = `Oops...!`;
         subTitle = err ? err.message : '';
       }
-      console.log('..here..._alert....');
-      this._alert.showErrorAlert(title, subTitle);
     }
+    console.log('..here..._alert....');
+    this._alert.showErrorAlert(title, subTitle);
   }
 
   getErrorMsgAndCode(error: any): any {

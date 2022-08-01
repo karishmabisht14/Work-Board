@@ -1,10 +1,9 @@
 import Swal from 'sweetalert2';
 import { Injectable } from '@angular/core';
-import { LoginService } from './login.service';
 
 @Injectable({ providedIn: 'root' })
 export class AlertService {
-  constructor(private _loginService: LoginService) {}
+  constructor() { }
 
   showLoading(title = 'Please wait...', subTitle = '', boldWord = '') {
     Swal.fire({

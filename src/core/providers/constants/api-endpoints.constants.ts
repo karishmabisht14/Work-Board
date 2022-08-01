@@ -1,5 +1,5 @@
 export class ApiEndPoints {
-  static login = 'users/login';
-  static signUp = 'users/register';
-  static logout = 'users/logout';
+  static login = 'user/login';
+  static signUp = 'user/register';
+  static logout = 'user/logout';
 }

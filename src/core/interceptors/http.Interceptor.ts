@@ -41,7 +41,7 @@ export class AuthInterceptor implements HttpInterceptor {
       retryWhen((errors) =>
         errors.pipe(
           concatMap((error, count) => {
-            if (count < 1 && (error.status == 401 || error.status == 0)) {
+            if (count < 1 && (error.status == 500 || error.status == 0)) {
               return of(error.status);
             }
             this._errorHandler.handleError(error);
