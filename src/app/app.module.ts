@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './main/login/login.component';
 import { AuthInterceptor } from 'src/core/interceptors';
 import { SharedModule } from 'src/core/providers/modules/shared.module';
+import { SignupComponent } from './main/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SharedModule } from 'src/core/providers/modules/shared.module';
     BoardComponent,
     ModalComponent,
     LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

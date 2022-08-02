@@ -15,7 +15,18 @@ export class LoginService {
     console.log("here.........login....", payload, ApiEndPoints.login);
     return this._apiService.post(ApiEndPoints.login, payload).pipe(
       map(userDetails => {
-        console.log("here.........login....", userDetails);
+        if (userDetails && userDetails._id) {
+          this._sharedService.setItem('auth-token', userDetails.token);
+          this._sharedService.changeUser(userDetails);
+        }
+        return userDetails;
+      })
+    );
+  }
+
+  signUp(payload: any): Observable<any> {
+    return this._apiService.post(ApiEndPoints.signUp, payload).pipe(
+      map(userDetails => {
         if (userDetails && userDetails._id) {
           this._sharedService.setItem('auth-token', userDetails.token);
           this._sharedService.changeUser(userDetails);

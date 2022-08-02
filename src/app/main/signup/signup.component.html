@@ -1,0 +1,71 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Register</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+
+<form [formGroup]="signupForm" (ngSubmit)="submitSignupForm()">
+    <div class="modal-body">
+        <div class="row">
+            <div class="mb-3 col-md-6">
+                <label for="firstName">First Name</label>
+                <div class="input-group">
+                    <input id="firstName" formControlName="firstName" class="form-control" placeholder="First Name"
+                        name="firstName" />
+                </div>
+                <div
+                    *ngIf="signupForm.get('firstName')?.invalid && (signupForm.get('firstName')?.dirty || signupForm.get('firstName')?.touched)">
+                    Please provide your first name.
+                </div>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="lastName">Last Name</label>
+                <div class="input-group">
+                    <input id="lastName" formControlName="lastName" class="form-control" placeholder="Last Name"
+                        name="lastName" />
+                </div>
+            </div>
+            <div class="mb-3 col-md-12">
+                <label for="E-mail">E-mail</label>
+                <div class="input-group">
+                    <input id="email" formControlName="email" class="form-control" placeholder="Enter your E-mail"
+                        name="email" />
+                </div>
+                <div
+                    *ngIf="signupForm.get('email')?.invalid && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)">
+                    Please provide a valid email address.
+                </div>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="password">Password</label>
+                <div class="input-group">
+                    <input id="password" type="password" formControlName="password" class="form-control"
+                        placeholder="Enter your password" name="password" />
+                </div>
+                <div
+                    *ngIf="signupForm.get('password')?.invalid && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)">
+                    Please provide a password.
+                </div>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="confirmPassword">Retype Password</label>
+                <div class="input-group">
+                    <input id="confirmPassword" formControlName="confirmPassword" class="form-control"
+                        placeholder="Confirm Password" name="confirmPassword" />
+                </div>
+                <div
+                    *ngIf="signupForm.get('confirmPassword')?.invalid && (signupForm.get('confirmPassword')?.dirty || signupForm.get('confirmPassword')?.touched)">
+                    Please re-type the password.
+                </div>
+            </div>
+            <div class="mb-3 col-md-12" *ngIf="signupForm.valid && !passwordMatchError">
+                Password does not match
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" [disabled]="!signupForm.valid" class="btn btn-success">
+            Register
+        </button>
+    </div>
+</form>

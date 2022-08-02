@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import * as icons from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from 'src/app/main/login/login.component';
+import { SignupComponent } from 'src/app/main/signup/signup.component';
 import { LoginService } from 'src/core/providers/services/login.service';
 import { SharedService } from 'src/core/providers/services/shared.service';
 
@@ -28,13 +29,13 @@ export class HeaderComponent implements OnInit {
   }
 
   openLoginModal() {
-    const modalRef = this.modalService.open(LoginComponent, {});
-    modalRef.componentInstance.name = '';
+    const modalRef = this.modalService.open(LoginComponent, { size: 'lg', centered: true });
+    modalRef.componentInstance.name = 'Login';
   }
 
   openSignUpModal() {
-    const modalRef = this.modalService.open(LoginComponent, {});
-    modalRef.componentInstance.name = '';
+    const modalRef = this.modalService.open(SignupComponent, { size: 'lg', centered: true });
+    modalRef.componentInstance.name = 'Sign Up';
   }
 
   logout() {
