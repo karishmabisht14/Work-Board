@@ -7,6 +7,7 @@ import { ErrorHandlerService } from '../services/error.service';
 import { RouterModule } from '@angular/router';
 import { NgbModule, NgbProgressbarConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserDataResolver } from '../resolvers/userData.resolver.';
 
 @NgModule({
   declarations: [],
@@ -31,6 +32,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginService,
     ErrorHandlerService,
     NgbProgressbarConfig,
+    UserDataResolver
   ],
 })
-export class SharedModule {}
+export class SharedModule { }

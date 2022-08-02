@@ -25,7 +25,7 @@ export class LoginService {
     );
   }
 
-  logout() {
+  logout(): Observable<any> {
     return this._apiService.post(ApiEndPoints.logout).pipe(
       map(data => {
         this._sharedService.purgAuth();

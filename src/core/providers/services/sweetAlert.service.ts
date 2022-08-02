@@ -1,4 +1,4 @@
-import Swal from 'sweetalert2';
+import Swal, { SweetAlertPosition } from 'sweetalert2';
 import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
@@ -33,14 +33,18 @@ export class AlertService {
     title: string,
     subTitle: string,
     confirButton: boolean = true,
-    cancelBtn: boolean = false
+    cancelBtn: boolean = false,
+    timer: number = 0,
+    position: SweetAlertPosition = 'center'
   ) {
     Swal.fire({
+      position: position,
       icon: 'success',
       title: title,
       html: subTitle,
       showConfirmButton: confirButton,
       showCancelButton: cancelBtn,
+      timer: timer || undefined,
     });
   }
 

@@ -37,9 +37,8 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       let credentials = this.loginForm.getRawValue();
       this.loginService.login(credentials).subscribe((userDetails: any) => {
-        console.log("Logged In", userDetails);
         this.activeModal.dismiss('Login Success!');
-        this.alertService.showSuccessAlert(`Welcome! ${userDetails?.firstName}`, 'You have successfully Logged In')
+        this.alertService.showSuccessAlert(`Welcome! ${userDetails?.firstName}`, 'You have successfully Logged In', false, false, 3000, 'top-right')
       })
     }
   }

@@ -36,7 +36,7 @@ export class ErrorHandlerService {
         this._sharedService.purgAuth();
         console.log('here we are------------------', err);
         this._alert.showErrorAlert('Sorry!', err.message);
-        this.router.navigate(['home']);
+        this.router.navigate(['/']);
         return;
       } else {
         title = `Oops...!`;

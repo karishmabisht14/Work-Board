@@ -21,19 +21,6 @@ export class UserApiService {
       );
   }
 
-  updateUserSettings(payload: any, userId: number) {
-    return this._apiService
-      .put(
-        `${ApiEndPoints.signUp}/${userId}/${ApiEndPoints.updateUserSettings}`,
-        payload
-      )
-      .pipe(
-        map((data) => {
-          return data;
-        })
-      );
-  }
-
   refreshUserData(userId: number, self: boolean = false) {
     let filter =
       '?filter[include]=clientSettings&filter[include]=clientSocialLinks&filter[include]=attachments&filter[include]=portfolios';

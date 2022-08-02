@@ -5,16 +5,40 @@
                 Work-Board
             </span>
         </ul>
-        <div class="d-flex loginWrap">
-            <button class="user" (click)="openModal()">
-                <fa-icon class="icon" [icon]="faUnlockKeyhole"></fa-icon>
+        <div *ngIf="!user else loggedInUser" class="d-flex loginWrap">
+            <button class="user" (click)="openLoginModal()">
+                <fa-icon class="icon" [icon]="icons.faUnlockKeyhole"></fa-icon>
                 Login
             </button>
             <span class="line"></span>
-            <button class="user">
-                <fa-icon class="icon" [icon]="faUser"></fa-icon>
+            <button class="user" (click)="openLoginModal()">
+                <fa-icon class="icon" [icon]="icons.faUser"></fa-icon>
                 Register
             </button>
         </div>
+        <ng-template #loggedInUser>
+            <div class="d-flex loginWrap">
+                <div ngbDropdown class="d-inline-block">
+                    <button type="button" class="user" id="dropdownBasic1" ngbDropdownToggle>
+                        <fa-icon class="icon" [icon]="icons.faUser"></fa-icon>
+                        {{user.firstName | titlecase}}
+                    </button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button ngbDropdownItem>
+                            <fa-icon class="icon" [icon]="icons.faIdBadge"></fa-icon>
+                            Profile
+                        </button>
+                        <button ngbDropdownItem>
+                            <fa-icon class="icon" [icon]="icons.faIdBadge"></fa-icon>
+                            Settings
+                        </button>
+                        <button ngbDropdownItem (click)="logout()">
+                            <fa-icon class="icon" [icon]="icons.faRightFromBracket"></fa-icon>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
     </div>
 </nav>
