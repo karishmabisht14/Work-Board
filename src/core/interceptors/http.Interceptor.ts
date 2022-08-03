@@ -18,7 +18,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private _errorHandler: ErrorHandlerService,
     private _sharedService: SharedService
-  ) {}
+  ) { }
 
   intercept(
     req: HttpRequest<any>,
@@ -41,10 +41,11 @@ export class AuthInterceptor implements HttpInterceptor {
       retryWhen((errors) =>
         errors.pipe(
           concatMap((error, count) => {
-            if (count < 1 && (error.status == 500 || error.status == 0)) {
+            if (count < 0 && (error.status == 500 || error.status == 0)) {
               return of(error.status);
             }
-            this._errorHandler.handleError(error);
+            const errorData = error.error || error;
+            this._errorHandler.handleError(errorData);
             return throwError(error);
           }),
           delay(1500)
