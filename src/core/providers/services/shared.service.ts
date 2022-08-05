@@ -11,11 +11,14 @@ export class SharedService {
   currentCategories = this.categories.asObservable();
   isLoggedIn: Boolean = false;
   redirectUrl: string = '';
-  constructor() {}
+  constructor() { }
 
   changeUser(user: any) {
     if (!(Object.keys(user).length === 0 && user.constructor === Object)) {
       this.isLoggedIn = true;
+    }
+    else {
+      this.isLoggedIn = false;
     }
     this.user.next(user);
   }

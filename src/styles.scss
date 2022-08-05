@@ -5,9 +5,11 @@
 
 * {
   body {
-    height: 100%;
-    background-color: #3aafa9;
+    min-height: 100vh;
+    background-color: #fff;
   }
+
   box-sizing: border-box;
-  font-family: "Raleway", Montserrat;
+  font-family: "Raleway",
+  Montserrat;
 }

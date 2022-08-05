@@ -3,4 +3,5 @@ export class ApiEndPoints {
   static signUp = 'user/register';
   static logout = 'user/logout';
   static myprofile = 'user/me';
+  static categories = 'categories'
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AppService } from 'src/app/services/app.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-boards',
@@ -8,23 +7,20 @@ import { AppService } from 'src/app/services/app.service';
   styleUrls: ['./boards.component.scss'],
 })
 export class BoardsComponent implements OnInit {
-  boards = [];
-  constructor(private router: Router, private appService: AppService) {}
+  categories = [];
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.appService.getJsonData().subscribe((data:any) => {
-      console.log('Data from file....', data);
-      if (data && data.boards) {
-        this.boards = data.boards;
-        this.appService.setBoardsData(this.boards);
-      }
-    });
+    const { categories } = this.activatedRoute.snapshot.data;
+    if (categories && categories.length) {
+      this.categories = categories;
+    }
   }
 
-  goto = (board: any) => {
-    if (board.id.length) {
-      let path = `boards/${board.id}`;
-      this.router.navigate([path], { state: { board } });
+  goto = (category: any) => {
+    if (category.categoryCode.length) {
+      let path = `boards/${category.categoryCode}`;
+      this.router.navigate([path], { state: { category } });
     }
   };
 }

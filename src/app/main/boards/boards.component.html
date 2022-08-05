@@ -4,8 +4,8 @@
             <h1>Choose your Work-Board</h1>
         </div>
         <div class="row">
-            <div class="col-md-4" *ngFor="let board of boards">
-                <app-card [data]=board (click)="goto(board)"> </app-card>
+            <div class="col-md-4" *ngFor="let category of categories">
+                <app-card [data]=category (click)="goto(category)"> </app-card>
             </div>
         </div>
     </div>

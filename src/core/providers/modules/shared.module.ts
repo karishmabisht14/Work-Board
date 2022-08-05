@@ -8,6 +8,8 @@ import { RouterModule } from '@angular/router';
 import { NgbModule, NgbProgressbarConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserDataResolver } from '../resolvers/userData.resolver.';
+import { MasterDataResolver } from '../resolvers/masterData.resolver';
+import { BoardCategoryService } from '../services/boardCategory.service';
 
 @NgModule({
   declarations: [],
@@ -32,7 +34,9 @@ import { UserDataResolver } from '../resolvers/userData.resolver.';
     LoginService,
     ErrorHandlerService,
     NgbProgressbarConfig,
-    UserDataResolver
+    UserDataResolver,
+    MasterDataResolver,
+    BoardCategoryService
   ],
 })
 export class SharedModule { }

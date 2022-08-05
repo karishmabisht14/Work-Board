@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppService } from 'src/app/services/app.service';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../modal/modal.component';
+import { BoardCategoryService } from 'src/core/providers/services/boardCategory.service';
+import { SharedService } from 'src/core/providers/services/shared.service';
+import { AlertService } from 'src/core/providers/services/sweetAlert.service';
 
 @Component({
   selector: 'app-board',
@@ -12,9 +14,10 @@ import { ModalComponent } from '../modal/modal.component';
 })
 export class BoardComponent implements OnInit {
   routerData: any = null;
-  boardData: any = null;
+  category: any = null;
+  allCategories: any = [];
   faPlus = faPlus;
-  cards = [
+  stages = [
     {
       heading: 'BACKLOG',
       bg: 'grey',
@@ -36,35 +39,38 @@ export class BoardComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private appService: AppService,
-    private modalService: NgbModal
+    private _categoryService: BoardCategoryService,
+    private modalService: NgbModal,
+    private _sharedService: SharedService,
+    private _alertService: AlertService
   ) {
     this.routerData = this.router.getCurrentNavigation();
+    this.allCategories = this._categoryService.categories;
     // should log out 'bar'
   }
 
   ngOnInit(): void {
     if (this.routerData) {
-      this.boardData = this.routerData.extras?.state?.board;
-      if (!this.boardData) {
-        this.appService.getJsonData().subscribe((data) => {
-          let id = this.router.url.substring(
-            this.router.url.lastIndexOf('/') + 1
-          );
-          if (data && data.boards && id) {
-            this.boardData = data.boards.find((e: any) => e.id == id);
-          }
-        });
+      this.category = this.routerData.extras?.state?.category;
+      if (!this.category && this.allCategories.length) {
+        const categoryCode = this.router.url.substring(this.router.url.lastIndexOf('/') + 1);
+        this.category = this.allCategories.find((e: any) => e.categoryCode == categoryCode);
       }
     }
   }
 
   openModal() {
-    const modalRef = this.modalService.open(ModalComponent, {
-      size: 'md',
-      centered: true,
-    });
-    modalRef.componentInstance.name = this.boardData.heading;
+    if (this._sharedService.isLoggedIn) {
+      const modalRef = this.modalService.open(ModalComponent, {
+        size: 'md',
+        centered: true,
+      });
+      modalRef.componentInstance.name = this.category.heading;
+    }
+    else {
+      this._alertService.showWarningAlert("Login Required!", 'Please Login to create Task!', false, 1500);
+    }
+
   }
 
   addCard = {};

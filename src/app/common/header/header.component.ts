@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as icons from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from 'src/app/main/login/login.component';
@@ -17,15 +18,14 @@ export class HeaderComponent implements OnInit {
   icons = icons;
   user: any;
   constructor(private modalService: NgbModal, public sharedService: SharedService,
-    private loginService: LoginService) { }
+    private loginService: LoginService, private router: Router) { }
   ngOnInit(): void {
     this.sharedService.currentUser.subscribe((user: any) => {
       if (user._id) {
         this.user = user;
       }
       else this.user = null;
-    })
-
+    });
   }
 
   openLoginModal() {
@@ -36,6 +36,10 @@ export class HeaderComponent implements OnInit {
   openSignUpModal() {
     const modalRef = this.modalService.open(SignupComponent, { size: 'lg', centered: true });
     modalRef.componentInstance.name = 'Sign Up';
+  }
+
+  gotTo(url: string) {
+    this.router.navigate([url]);
   }
 
   logout() {

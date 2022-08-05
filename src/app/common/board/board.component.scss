@@ -1,7 +1,8 @@
 h5 {
-
   padding-top: 40px;
-  padding-bottom: 40px;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 h6 span {
@@ -26,4 +27,18 @@ button span {
 
 .my-modal {
   color: red;
+}
+
+.container {
+  background-color: #e7f3f3;
+  margin: 12px auto 12px auto;
+  min-height: 90vh;
+  padding-left: 16px;
+  padding-right: 16px;
+  border: solid 1px #c8c8c8;
+  border-radius: 12px;
+}
+
+.main-wrapper {
+  margin-top: 4rem;
 }
