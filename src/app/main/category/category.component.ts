@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-boards',
-  templateUrl: './boards.component.html',
-  styleUrls: ['./boards.component.scss'],
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.scss'],
 })
-export class BoardsComponent implements OnInit {
+export class CategoryComponent implements OnInit {
   categories = [];
   constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -19,7 +19,7 @@ export class BoardsComponent implements OnInit {
 
   goto = (category: any) => {
     if (category.categoryCode.length) {
-      let path = `boards/${category.categoryCode}`;
+      let path = `category/${category.categoryCode}`;
       this.router.navigate([path], { state: { category } });
     }
   };

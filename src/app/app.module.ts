@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainComponent } from './main/main.component';
-import { BoardsComponent } from './main/boards/boards.component';
+import { CategoryComponent } from './main/category/category.component';
 import { CardComponent } from './common/card/card.component';
 import { HeaderComponent } from './common/header/header.component';
 import { BoardComponent } from './common/board/board.component';
@@ -23,7 +23,7 @@ import { SignupComponent } from './main/signup/signup.component';
     AppComponent,
     MainComponent,
     HeaderComponent,
-    BoardsComponent,
+    CategoryComponent,
     CardComponent,
     BoardComponent,
     ModalComponent,

@@ -3,24 +3,31 @@ import { RouterModule, Routes } from '@angular/router';
 import { MasterDataResolver } from 'src/core/providers/resolvers/masterData.resolver';
 import { UserDataResolver } from 'src/core/providers/resolvers/userData.resolver.';
 import { BoardComponent } from './common/board/board.component';
-import { BoardsComponent } from './main/boards/boards.component';
+import { CategoryComponent } from './main/category/category.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: BoardsComponent,
+    redirectTo: '/category',
+    pathMatch: 'full'
+  },
+  {
+    path: 'category',
+    component: CategoryComponent,
+    resolve: {
+      userdata: UserDataResolver,
+      categories: MasterDataResolver
+    },
+  },
+  {
+    path: 'category/:id',
+    component: BoardComponent,
     resolve: {
       userdata: UserDataResolver,
       categories: MasterDataResolver
     }
   },
-  {
-    path: 'boards/:id',
-    component: BoardComponent,
-    resolve: {
-      categories: MasterDataResolver
-    }
-  },
+
 ];
 
 @NgModule({
