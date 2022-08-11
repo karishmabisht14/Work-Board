@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserDataResolver } from '../resolvers/userData.resolver.';
 import { MasterDataResolver } from '../resolvers/masterData.resolver';
 import { BoardCategoryService } from '../services/boardCategory.service';
+import { TaskService } from '../services/task.service';
+import { TaskDataResolver } from '../resolvers/taskData.resolver';
 
 @NgModule({
   declarations: [],
@@ -36,7 +38,9 @@ import { BoardCategoryService } from '../services/boardCategory.service';
     NgbProgressbarConfig,
     UserDataResolver,
     MasterDataResolver,
-    BoardCategoryService
+    BoardCategoryService,
+    TaskService,
+    TaskDataResolver
   ],
 })
 export class SharedModule { }

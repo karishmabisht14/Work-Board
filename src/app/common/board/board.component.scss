@@ -13,13 +13,29 @@ h6 span {
 
 button {
   border: none;
-  color: green;
-  background-color: #ffffff;
+  margin-top: 20px;
 }
 
-.faPlus {
-  color: green;
+.card-title {
+  width: 95%;
 }
+
+.card-body {
+
+  .icon-conatiner,
+  .card-title {
+    display: inline-block;
+  }
+
+  .botton-right {
+    float: right;
+    color: maroon;
+  }
+}
+
+// .faPlus {
+//   color: green;
+// }
 
 button span {
   padding-left: 12px;
@@ -41,4 +57,46 @@ button span {
 
 .main-wrapper {
   margin-top: 4rem;
+}
+
+
+
+.stage {
+  .task {
+    margin-top: 8px;
+    border-radius: 5px;
+
+    p {
+      font-size: 12px;
+    }
+  }
+}
+
+.stage-1 {
+  border-radius: 4px;
+
+  .task {
+    border: 1px solid red;
+  }
+}
+
+.stage-2 {
+
+  .task {
+    border: 1px solid rgb(0, 0, 0);
+  }
+}
+
+.stage-3 {
+
+  .task {
+    border: 1px solid rgb(29, 166, 207);
+  }
+}
+
+.stage-4 {
+
+  .task {
+    border: 1px solid rgb(43, 104, 3);
+  }
 }

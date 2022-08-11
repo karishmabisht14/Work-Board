@@ -7,8 +7,6 @@ import { BehaviorSubject } from 'rxjs';
 export class SharedService {
   private user: BehaviorSubject<any> = new BehaviorSubject<any>({});
   currentUser = this.user.asObservable();
-  private categories: BehaviorSubject<any> = new BehaviorSubject<any>({});
-  currentCategories = this.categories.asObservable();
   isLoggedIn: Boolean = false;
   redirectUrl: string = '';
   constructor() { }
@@ -21,10 +19,6 @@ export class SharedService {
       this.isLoggedIn = false;
     }
     this.user.next(user);
-  }
-
-  changeCategories(categories: any[]) {
-    this.categories.next(categories);
   }
 
   setItem(key: string, value: any) {
@@ -41,5 +35,22 @@ export class SharedService {
 
   purgAuth() {
     localStorage.clear();
+  }
+
+  groupBy(arr: any[], key: string) {
+    const myObj: any = {};
+    arr.forEach(ele => {
+      if (myObj[ele[key]] && myObj[ele[key]].count) {
+        myObj[ele[key]].count = myObj[ele[key]].count + 1;
+        myObj[ele[key]].items.push(ele);
+      } else {
+        myObj[ele[key]] = {
+          expand: false,
+          count: 1,
+          items: [ele]
+        };
+      }
+    });
+    return myObj;
   }
 }

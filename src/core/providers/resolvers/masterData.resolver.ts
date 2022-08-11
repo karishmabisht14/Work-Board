@@ -11,7 +11,6 @@ export class MasterDataResolver implements Resolve<any> {
         if (this._categoryService.categories.length === 0) {
             return this._categoryService.getCategories();
         } else {
-            console.log("Not Calling API----");
             return this._categoryService.categories;
         }
     }

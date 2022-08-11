@@ -1,7 +1,9 @@
 export class ApiEndPoints {
-  static login = 'user/login';
-  static signUp = 'user/register';
-  static logout = 'user/logout';
-  static myprofile = 'user/me';
-  static categories = 'categories'
+  static login = 'users/login';
+  static signUp = 'users/register';
+  static logout = 'users/logout';
+  static myprofile = 'users/me';
+  static categories = 'categories';
+  static addTask = 'tasks/add';
+  static userTasks = 'tasks'
 }

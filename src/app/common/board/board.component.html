@@ -1,20 +1,44 @@
 <div class="container" *ngIf="category">
-    <h5>{{category.name}} Board </h5>
+    <div class="row align-items-center">
+        <div class="col-lg-10">
+            <h5>{{category.name}} Board </h5>
+        </div>
+        <div class="col-lg-2">
+            <button type="button" class="btn btn-secondary btn-lg" (click)="openModal()">
+                <fa-icon class="faPlus" [icon]="faPlus"></fa-icon><span>Add Task</span>
+            </button>
+        </div>
+    </div>
     <hr />
     <div class="row main-wrapper">
-        <div class="col-lg-3" *ngFor="let stage of stages">
-            <h6>{{stage.heading}}
+        <div class="col-lg-3" *ngFor="let stage of category.stages;">
+            <h6>{{stage.name}}
                 <span [ngStyle]="{'background-color': stage.bg}"></span>
             </h6>
-        </div>
-        <div class="col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <button type="button" (click)="openModal()">
-                        <fa-icon class="faPlus" [icon]="faPlus"></fa-icon><span>Add Task</span>
-                    </button>
+            <div [ngClass]="['stage', getTaskClass(stage.order)]"
+                *ngIf="tasks && tasks[stage.order] && tasks[stage.order].items;">
+                <div class="card task" *ngFor="let task of tasks[stage.order]?.items">
+                    <div class="card-body">
+                        <h6 class="card-title">{{task.name | titlecase}} </h6>
+                        <span *ngIf="task.expand else collapsedDesc" class="icon-conatiner"
+                            (click)="task.expand = false">
+                            <fa-icon [icon]="faAnglesUp"></fa-icon>
+                        </span>
+                        <ng-template #collapsedDesc>
+                            <span class="icon-conatiner" (click)="task.expand = true">
+                                <fa-icon [icon]="faAnglesDown"></fa-icon>
+                            </span>
+                        </ng-template>
+                        <div *ngIf="task.expand" class="card-text">
+                            <p>{{task.description}}</p>
+                            <span class="botton-right" (click)="deletTask(task)">
+                                <fa-icon [icon]="faTrash"></fa-icon>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>

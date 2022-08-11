@@ -6,6 +6,7 @@ import { LoginComponent } from 'src/app/main/login/login.component';
 import { SignupComponent } from 'src/app/main/signup/signup.component';
 import { LoginService } from 'src/core/providers/services/login.service';
 import { SharedService } from 'src/core/providers/services/shared.service';
+import { TaskService } from 'src/core/providers/services/task.service';
 
 @Component({
   selector: 'app-header',
@@ -17,10 +18,10 @@ export class HeaderComponent implements OnInit {
   content: string = '';
   icons = icons;
   user: any;
-  constructor(private modalService: NgbModal, public sharedService: SharedService,
-    private loginService: LoginService, private router: Router) { }
+  constructor(private modalService: NgbModal, public _sharedService: SharedService,
+    private _loginService: LoginService, private router: Router, private _taskService: TaskService) { }
   ngOnInit(): void {
-    this.sharedService.currentUser.subscribe((user: any) => {
+    this._sharedService.currentUser.subscribe((user: any) => {
       if (user._id) {
         this.user = user;
       }
@@ -43,8 +44,9 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.loginService.logout().subscribe(result => {
-      console.log("Logged Out........", result);
-    })
+    this._loginService.logout().subscribe(result => {
+      this._taskService.resetTasks();
+      this.gotTo("/");
+    });
   }
 }

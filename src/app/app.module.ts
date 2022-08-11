@@ -11,12 +11,12 @@ import { HeaderComponent } from './common/header/header.component';
 import { BoardComponent } from './common/board/board.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ModalComponent } from './common/modal/modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './main/login/login.component';
 import { AuthInterceptor } from 'src/core/interceptors';
 import { SharedModule } from 'src/core/providers/modules/shared.module';
 import { SignupComponent } from './main/signup/signup.component';
+import { AddTaskComponent } from './main/add-task/add-task.component';
 
 @NgModule({
   declarations: [
@@ -26,9 +26,9 @@ import { SignupComponent } from './main/signup/signup.component';
     CategoryComponent,
     CardComponent,
     BoardComponent,
-    ModalComponent,
     LoginComponent,
     SignupComponent,
+    AddTaskComponent,
   ],
   imports: [
     BrowserModule,
