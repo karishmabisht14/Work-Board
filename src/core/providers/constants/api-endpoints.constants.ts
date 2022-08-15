@@ -5,5 +5,7 @@ export class ApiEndPoints {
   static myprofile = 'users/me';
   static categories = 'categories';
   static addTask = 'tasks/add';
-  static userTasks = 'tasks'
+  static userTasks = 'tasks';
+  static updateTask = 'tasks/update';
+  static deleteTask = 'tasks/delete';
 }

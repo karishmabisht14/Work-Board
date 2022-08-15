@@ -1,44 +1,64 @@
 <div class="container" *ngIf="category">
     <div class="row align-items-center">
         <div class="col-lg-10">
-            <h5>{{category.name}} Board </h5>
+            <h4>{{category.name}} Board </h4>
         </div>
         <div class="col-lg-2">
-            <button type="button" class="btn btn-secondary btn-lg" (click)="openModal()">
-                <fa-icon class="faPlus" [icon]="faPlus"></fa-icon><span>Add Task</span>
+            <button type="button" class="btn btn-success btn-lg" (click)="openModal()">
+                <fa-icon class="faPlus" [icon]="Icons.faPlus"></fa-icon><span>Add Task</span>
             </button>
         </div>
     </div>
     <hr />
+    <div *ngIf="selectedTask" class="row align-items-center task-actions">
+        <div class="col-lg-7">
+            {{ selectedTask.name}}
+        </div>
+        <div class="col-lg-1">
+            <fa-icon [ngStyle]="{'color': selectedTask.currentStage===1?'grey':''}" (click)="updateTask(-1)"
+                [icon]="Icons.faAnglesLeft"></fa-icon>
+        </div>
+        <div class="col-lg-1">
+            <fa-icon [ngStyle]="{'color': selectedTask.currentStage===4?'grey':''}" (click)="updateTask(1)"
+                [icon]="Icons.faAnglesRight"></fa-icon>
+        </div>
+        <div class="col-lg-1">
+            <fa-icon (click)="updateTask(0)" [icon]="Icons.faFileEdit"></fa-icon>
+        </div>
+        <div class="col-lg-1">
+            <fa-icon (click)="deletTask()" [icon]="Icons.faTrash"></fa-icon>
+        </div>
+        <div class="col-lg-1">
+            <fa-icon [ngStyle]="{'color': selectedTask.currentStage!==4?'grey':''}" (click)="archiveTask()"
+                [icon]="Icons.faFileArchive"></fa-icon>
+        </div>
+    </div>
     <div class="row main-wrapper">
         <div class="col-lg-3" *ngFor="let stage of category.stages;">
-            <h6>{{stage.name}}
+            <h5 class="stage-heading">{{stage.name}}
                 <span [ngStyle]="{'background-color': stage.bg}"></span>
-            </h6>
+            </h5>
             <div [ngClass]="['stage', getTaskClass(stage.order)]"
                 *ngIf="tasks && tasks[stage.order] && tasks[stage.order].items;">
-                <div class="card task" *ngFor="let task of tasks[stage.order]?.items">
+                <div [ngClass]="['card','task', (selectedTask && selectedTask?._id) === task?._id ? 'selected' :'']"
+                    *ngFor="let task of tasks[stage.order]?.items" (click)="toggleTaskSelection(task)">
                     <div class="card-body">
                         <h6 class="card-title">{{task.name | titlecase}} </h6>
                         <span *ngIf="task.expand else collapsedDesc" class="icon-conatiner"
-                            (click)="task.expand = false">
-                            <fa-icon [icon]="faAnglesUp"></fa-icon>
+                            (click)="toggleTaskExpansion($event, task)">
+                            <fa-icon [icon]="Icons.faAnglesUp"></fa-icon>
                         </span>
                         <ng-template #collapsedDesc>
-                            <span class="icon-conatiner" (click)="task.expand = true">
-                                <fa-icon [icon]="faAnglesDown"></fa-icon>
+                            <span class="icon-conatiner" (click)="toggleTaskExpansion($event, task)">
+                                <fa-icon [icon]="Icons.faAnglesDown"></fa-icon>
                             </span>
                         </ng-template>
                         <div *ngIf="task.expand" class="card-text">
                             <p>{{task.description}}</p>
-                            <span class="botton-right" (click)="deletTask(task)">
-                                <fa-icon [icon]="faTrash"></fa-icon>
-                            </span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>

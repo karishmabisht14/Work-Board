@@ -16,7 +16,6 @@ export class ApiService {
   }
 
   post(path: string, body: Object = {}): Observable<any> {
-    console.log("here...post...api service.", body, path);
     return this.http.post(`${environment.api_url}${path}`, body);
   }
 

@@ -40,6 +40,9 @@ export class HeaderComponent implements OnInit {
   }
 
   gotTo(url: string) {
+    if (url === "/") {
+      this._taskService.resetTasks();
+    }
     this.router.navigate([url]);
   }
 

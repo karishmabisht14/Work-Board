@@ -44,7 +44,6 @@ export class SignupComponent implements OnInit {
   submitSignupForm() {
     if (this.signupForm.valid) {
       let signUpData = this.signupForm.getRawValue();
-      console.log(signUpData);
       this.loginService.signUp(signUpData).subscribe((userDetails: any) => {
         this.activeModal.dismiss('Registration Success!');
         this.alertService.showSuccessAlert(`Welcome! ${userDetails?.firstName}`, 'You have successfully Registered', false, false, 3000, 'top-right')

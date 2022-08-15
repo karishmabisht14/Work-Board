@@ -13,15 +13,23 @@ export class TaskService {
         return this._apiService
             .post(ApiEndPoints.addTask, taskData).pipe(map((data) => {
                 if (data) {
-                    if (this.tasks && this.tasks[data.currentStage]) {
-                        this.tasks[data.currentStage].items.push(data);
+                    if (this.tasks) {
+                        if (this.tasks[data.currentStage]) {
+                            this.tasks[data.currentStage].items.push(data);
+                        } else {
+                            this.tasks[data.currentStage] = {
+                                count: 1,
+                                items: [data]
+                            }
+                        }
                     } else {
-                        this.tasks[data.currentStage] = {
-                            count: 1,
-                            items: [data]
+                        this.tasks = {
+                            [data.currentStage]: {
+                                count: 1,
+                                items: [data]
+                            }
                         }
                     }
-
                 }
                 return data;
             }));
@@ -38,6 +46,21 @@ export class TaskService {
                 return data;
             }));
     }
+
+    updateTask(taskData: any, id: string): Observable<any> {
+        return this._apiService
+            .put(`${ApiEndPoints.updateTask}/${id}`, taskData).pipe(map((data) => {
+                return data;
+            }));
+    }
+
+    deletTask(id: string): Observable<any> {
+        return this._apiService
+            .delete(`${ApiEndPoints.deleteTask}/${id}`).pipe(map((data) => {
+                return data;
+            }));
+    }
+
 
     public setTasksData(data: any = []) {
         if (data.length) {

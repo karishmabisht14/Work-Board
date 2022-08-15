@@ -21,7 +21,6 @@ export class AlertService {
   }
 
   showErrorAlert(title: string, subTitle: string) {
-    console.log('..here...show Error alert....');
     Swal.fire({
       icon: 'error',
       title: title,
@@ -66,7 +65,7 @@ export class AlertService {
   confirm(
     title: string = 'Are you sure?',
     text: string = "You won't be able to revert this!",
-    confirmBtnTxt: string = 'Its Okay!',
+    confirmBtnTxt: string = 'Yes',
     cancelBtnTxt: string = 'No, Cancel'
   ) {
     return new Promise<boolean>((resolve, reject) => {
@@ -75,8 +74,8 @@ export class AlertService {
         html: text,
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
         cancelButtonText: cancelBtnTxt,
         confirmButtonText: confirmBtnTxt,
       })

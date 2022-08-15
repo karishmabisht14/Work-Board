@@ -1,14 +1,19 @@
-h5 {
+h4 {
   padding-top: 40px;
   font-size: 2rem;
   font-weight: 600;
   letter-spacing: 1px;
 }
 
-h6 span {
+h5 span {
   display: block;
   height: 2px;
   margin: 12px 0px;
+}
+
+.stage-heading {
+  font-weight: 800;
+  letter-spacing: 2px;
 }
 
 button {
@@ -26,16 +31,7 @@ button {
   .card-title {
     display: inline-block;
   }
-
-  .botton-right {
-    float: right;
-    color: maroon;
-  }
 }
-
-// .faPlus {
-//   color: green;
-// }
 
 button span {
   padding-left: 12px;
@@ -59,6 +55,21 @@ button span {
   margin-top: 4rem;
 }
 
+hr {
+  margin-bottom: 4px;
+}
+
+.task-actions {
+  min-height: 50px;
+  border-right: 4px #15b9b9 solid;
+  border-left: 4px #15b9b9 solid;
+  border-bottom: 4px #15b9b9 solid;
+  border-radius: 0 0 30px 30px;
+  margin: 0 16px;
+  padding-left: 16px;
+  background-color: azure;
+}
+
 
 
 .stage {
@@ -78,12 +89,20 @@ button span {
   .task {
     border: 1px solid red;
   }
+
+  .task.selected {
+    border: 2px solid red;
+  }
 }
 
 .stage-2 {
 
   .task {
     border: 1px solid rgb(0, 0, 0);
+  }
+
+  .task.selected {
+    border: 2px solid rgb(0, 0, 0);
   }
 }
 
@@ -92,11 +111,19 @@ button span {
   .task {
     border: 1px solid rgb(29, 166, 207);
   }
+
+  .task.selected {
+    border: 2px solid rgb(29, 166, 207);
+  }
 }
 
 .stage-4 {
 
   .task {
     border: 1px solid rgb(43, 104, 3);
+  }
+
+  .task.selected {
+    border: 2px solid rgb(43, 104, 3);
   }
 }

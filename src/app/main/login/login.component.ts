@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void { }
 
   submitLoginForm() {
-    console.log(this.loginForm.getRawValue());
     if (this.loginForm.valid) {
       let credentials = this.loginForm.getRawValue();
       this.loginService.login(credentials).subscribe((userDetails: any) => {

@@ -46,6 +46,7 @@ export class SharedService {
       } else {
         myObj[ele[key]] = {
           expand: false,
+          selected: false,
           count: 1,
           items: [ele]
         };
